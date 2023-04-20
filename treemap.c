@@ -86,13 +86,17 @@ Pair * searchTreeMap(TreeMap * tree, void* key){
     TreeNode * aux = tree->root;
     
     while (aux != NULL) {
-        // Si la clave es igual a la del nodo actual
-        if (is_equal(tree, aux->pair->key, key)) {
-            // Current apunte al nodo encontrado
-            tree->current = aux;
-            // Retornar el par (FINAL BUENO)
-            return aux->pair;
+
+        if(aux->pair != NULL){
+            // Si la clave es igual a la del nodo actual
+            if (is_equal(tree, aux->pair->key, key)) {
+                // Current apunte al nodo encontrado
+                tree->current = aux;
+                // Retornar el par (FINAL BUENO)
+                return aux->pair;
+            }
         }
+        
         // Si la clave es menor que la del nodo actual
         if (tree->lower_than(key, aux->pair->key)) {
             aux = aux->left;
