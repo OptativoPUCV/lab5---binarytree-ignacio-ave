@@ -25,7 +25,7 @@ int is_equal(TreeMap* tree, void* key1, void* key2){
     else return 0;
 }
 
-Pair crearPair (Pair *pair ,void* key, void* value){
+Pair createPair (Pair *pair ,void* key, void* value){
 
 
     // Asignar los valores
