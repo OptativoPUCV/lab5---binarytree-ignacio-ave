@@ -28,7 +28,7 @@ int is_equal(TreeMap* tree, void* key1, void* key2){
 Pair createPair (Pair *pair ,void* key, void* value){
 
 
-    // Asignar los valores
+    // Asignar valores
     pair->key = key;
     pair->value = value;
     // Retornar el par
@@ -63,65 +63,93 @@ TreeNode* createTreeNode(void* key, void * value) {
 
 TreeMap * createTreeMap(int (*lt) (void* key1, void* key2)) {
     // Reservar memoria para el nuevo mapa
-    TreeMap * nuevo = (TreeMap *)malloc(sizeof(TreeMap));
+    TreeMap * nuevotree = (TreeMap *)malloc(sizeof(TreeMap));
     // Si no se pudo reservar memoria, retornar NULL
-    if (nuevo == NULL) {
+    if (nuevotree == NULL) {
         return NULL;
     }
     // Inicializar el mapa
-    nuevo->root = NULL;
-    nuevo->current = NULL;
-    nuevo->lower_than = lt;
-    return nuevo;
-}
-//Para utilizar la función lower_than de un mapa, debe hacerlo de la siguiente manera (asumiendo que la variable TreeMap* map está definida):
-// int resultado = map->lower_than(key1,key2);
-// Esta función retorna 1 si key1<key2.
-// También puede usar la siguiente función para saber si dos claves son iguales.
-/*
-//retorna 1 si las claves son iguales y 0 si no lo son
-int is_equal(TreeMap* tree, void* key1, void* key2){
-    if(tree->lower_than(key1,key2)==0 &&  
-        tree->lower_than(key2,key1)==0) return 1;
-    else return 0;
+    nuevotree->root = NULL;
+    nuevotree->current = NULL;
+    nuevotree->lower_than = lt;
+    return nuevotree;
 }
 
-TreeMap * createTreeMap(int (*lt) (void* key1, void* key2)) {
-    // Reservar memoria para el nuevo mapa
-    TreeMap * new = (TreeMap *)malloc(sizeof(TreeMap));
-    // Si no se pudo reservar memoria, retornar NULL
-    if (new == NULL) {
-        return NULL;
+
+//2.- Implemente la función Pair* searchTreeMap(TreeMap* tree, void* key), 
+// la cual busca el nodo con clave igual a key y retorna el Pair asociado al nodo.
+//  Si no se encuentra la clave retorna NULL. 
+// Recuerde hacer que el current apunte al nodo encontrado.
+Pair * searchTreeMap(TreeMap * tree, void* key){
+    if (tree == NULL || tree->root == NULL) return NULL;
+    // Inicializar el nodo actual
+    TreeNode * aux = tree->root;
+    
+    while (aux != NULL) {
+        // Si la clave es igual a la del nodo actual
+        if (is_equal(tree, aux->pair->key, key)) {
+            // Current apunte al nodo encontrado
+            tree->current = aux;
+            // Retornar el par (FINAL BUENO)
+            return aux->pair;
+        }
+        // Si la clave es menor que la del nodo actual
+        if (tree->lower_than(key, aux->pair->key)) {
+            aux = aux->left;
+        // Si la clave es mayor que la del nodo actual
+        } else {
+            aux = aux->right;
+        }
     }
-}
-
-TreeMap * createTreeMap(int (*lt) (void* key1, void* key2)) {
-
-
-
-    //map->lower_than = lt;
+    // Si no se encontró la clave (FINAL MALO)
     return NULL;
+
 }
-*/
-
-/*
-TreeMap * createTreeMap(int (*lt) (void* key1, void* key2)) {
 
 
-    //map->lower_than = lt;
-    return NULL;
-}
-*/
-
-//2.- Implemente la función Pair* searchTreeMap(TreeMap* tree, void* key), la cual busca el nodo con clave igual a key y retorna el Pair asociado al nodo. Si no se encuentra la clave retorna NULL. Recuerde hacer que el current apunte al nodo encontrado.
-Pair * searchTreeMap(TreeMap * tree, void* key) {
-    return NULL;
-}
 
 // 3.- Implemente la función void insertTreeMap(TreeMap * tree, void* key, void * value). Esta función inserta un nuevo dato (key,value) en el árbol y hace que el current apunte al nuevo nodo. Para insertar un dato, primero debe realizar una búsqueda para encontrar donde debería ubicarse. Luego crear el nuevo nodo y enlazarlo. Si la clave del dato ya existe retorne sin hacer nada (recuerde que el mapa no permite claves repetidas).
 void insertTreeMap(TreeMap * tree, void* key, void * value) {
+    
+    tree->current = tree->root; 
+    TreeNode * aux = tree->root;
+    // Si el árbol está vacío
+    if(tree->root == NULL){
+        tree->root = createTreeNode(key, value);
+        tree->current = tree->root;
+        return;
+    }
+    // Si la clave ya existe
+    if (searchTreeMap(tree, key) != NULL) return;
 
+    // Si la clave no existe
+    while(tree->current != NULL){
+        // Si la clave es menor que la del nodo actual
+        if(tree->lower_than(key, tree->current->pair->key)){
+            aux = tree->current;
+            tree->current = tree->current->left;
+        // Si la clave es mayor que la del nodo actual
+        }else{
+            aux = tree->current;
+            tree->current = tree->current->right;
+        }
+    }
+    // Si la clave es menor que la del nodo actual
+    if(tree->lower_than(key, aux->pair->key)){
+        aux->left = createTreeNode(key, value);
+        aux->left->parent = aux;
+        tree->current = aux->left;
+    // Si la clave es mayor que la del nodo actual
+    }else{
+        aux->right = createTreeNode(key, value);
+        aux->right->parent = aux;
+        tree->current = aux->right;
+    }
 }
+
+/*
+
+*/
 //4.- Implemente la función TreeNode * minimum(TreeNode * x). Esta función retorna el nodo con la mínima clave ubicado en el subárbol con raiz x. Para obtener el nodo tiene que, a partir del nodo x, irse por la rama izquierda hasta llegar al final del subárbol. Si x no tiene hijo izquierdo se retorna el mismo nodo.
 TreeNode * minimum(TreeNode * x){
 
