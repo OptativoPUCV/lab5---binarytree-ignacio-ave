@@ -38,3 +38,13 @@ treemap.c:50:5: error: implicit declaration of function ‘createPair’; did yo
 cc1: all warnings being treated as errors
 Compilation failed
 309090f
+Thu Apr 20 05:28:07 PM -04 2023: 
+In file included from test.c:4:
+treemap.c: In function ‘createTreeNode’:
+treemap.c:50:5: error: implicit declaration of function ‘createPair’; did you mean ‘crearPair’? [-Werror=implicit-function-declaration]
+   50 |     createPair(pair ,key, value);
+      |     ^~~~~~~~~~
+      |     crearPair
+cc1: all warnings being treated as errors
+Compilation failed
+c49b6ae
