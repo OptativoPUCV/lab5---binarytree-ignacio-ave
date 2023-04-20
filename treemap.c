@@ -26,10 +26,8 @@ int is_equal(TreeMap* tree, void* key1, void* key2){
 }
 
 Pair crearPair (Pair *pair ,void* key, void* value){
-    // No deberia entra cuando es NULL pero igual lo pongo
-    if(pair == NULL){
-        return NULL;
-    }
+
+
     // Asignar los valores
     pair->key = key;
     pair->value = value;
