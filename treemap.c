@@ -257,16 +257,14 @@ Pair * nextTreeMap(TreeMap * tree) {
         tree->current = minimum(tree->current->right);
         return tree->current->pair;
     }
-    return findNext(tree->current);
-}
-
-
-
-TreeNode * findNext(TreeNode * node) {
-    TreeNode * aux = node->parent;
-    while (aux != NULL && node == aux->right) {
-        node = aux;
+    TreeNode * aux = tree->current->parent;
+    while (aux != NULL && tree->current == aux->right) {
+        tree->current = aux;
         aux = aux->parent;
     }
-    return aux;
+    tree->current = aux;
+    if (tree->current != NULL) {
+        return tree->current->pair;
+    }
+    return NULL;
 }

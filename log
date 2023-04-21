@@ -540,3 +540,9 @@ treemap.c:260:12: note: previous implicit declaration of ‘findNext’ with typ
 cc1: all warnings being treated as errors
 Compilation failed
 8d86c80
+Thu Apr 20 11:08:12 PM -04 2023: 
+ treemap.c | 18 ++++++++----------
+ 1 file changed, 8 insertions(+), 10 deletions(-)
+ tests:  29|0
+total_score: 70/70
+d5e9f02
