@@ -198,3 +198,9 @@ treemap.c:136:9: note: previous implicit declaration of ‘removeNodeWithTwoChil
 cc1: all warnings being treated as errors
 Compilation failed
 d94321e
+Thu Apr 20 10:34:56 PM -04 2023: 
+ treemap.c | 18 +++---------------
+ 1 file changed, 3 insertions(+), 15 deletions(-)
+ tests:  29|0
+total_score: 70/70
+6291462
