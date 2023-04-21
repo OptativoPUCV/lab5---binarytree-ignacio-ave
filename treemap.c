@@ -162,7 +162,7 @@ void eraseTreeMap(TreeMap * tree, void* key){
 //2.- Implemente la función Pair* searchTreeMap(TreeMap* tree, void* key), la cual busca el nodo con clave igual a key y retorna el Pair asociado al nodo. Si no se encuentra la clave retorna NULL. Recuerde hacer que el current apunte al nodo encontrado.
 
 
-Pair * searchTreeMap(TreeMap * tree, void* key) {
+TreeNode* searchTreeNode(TreeMap * tree, void* key) {
     if (tree == NULL || tree->root == NULL ) {
         return NULL;
     }
@@ -176,7 +176,7 @@ Pair * searchTreeMap(TreeMap * tree, void* key) {
 
         if (is_equal(tree, aux->pair->key, key)) {
             tree->current = aux;
-            return aux->pair;
+            return aux;
         }
 
         if (tree->lower_than == NULL) {
@@ -198,6 +198,16 @@ Pair * searchTreeMap(TreeMap * tree, void* key) {
     return NULL;
 }
 
+Pair* searchTreeMap(TreeMap * tree, void* key) {
+    TreeNode * node = searchTreeNode(tree, key);
+
+    if (node == NULL) {
+        return NULL;
+    }
+
+    return node->pair;
+}
+
 
 
 //7.- La función Pair* upperBound(TreeMap* tree, void* key) retorna el Pair con clave igual a key. En caso de no encontrarlo retorna el primer par asociado a una clave mayor o igual a key. Para implementarla puede realizar una búsqueda normal y usar un puntero a nodo auxiliar ub_node que vaya guardando el nodo con la menor clave mayor o igual a key. Finalmente retorne el par del nodo ub_node.
@@ -213,32 +223,19 @@ Pair * upperBound(TreeMap * tree, void* key) {
             tree->current = aux;
             return aux->pair;
         }
-        ub_node = update_ub_node(tree, key, aux, ub_node);
-        aux = move_to_next_node(tree, key, aux);
+        if (tree->lower_than(key, aux->pair->key)) {
+            ub_node = aux;
+            aux = aux->left;
+        }
+        else {
+            aux = aux->right;
+        }
     }
     if (ub_node != NULL) {
         tree->current = ub_node;
         return ub_node->pair;
     }
     return NULL;
-}
-
-TreeNode * update_ub_node(TreeMap * tree, void* key, TreeNode *aux,
-                          TreeNode *ub_node) {
-    if (tree->lower_than(key, aux->pair->key)) {
-        ub_node = aux;
-    }
-    return ub_node;
-}
-
-TreeNode * move_to_next_node(TreeMap * tree, void* key, TreeNode *aux) {
-    if (tree->lower_than(key, aux->pair->key)) {
-        aux = aux->left;
-    }
-    else {
-        aux = aux->right;
-    }
-    return aux;
 }
 
 

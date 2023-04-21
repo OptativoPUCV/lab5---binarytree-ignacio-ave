@@ -399,3 +399,9 @@ treemap.c:217:15: note: previous implicit declaration of ‘move_to_next_node’
 cc1: all warnings being treated as errors
 Compilation failed
 34cc622
+Thu Apr 20 10:55:04 PM -04 2023: 
+ treemap.c | 39 ++++++++++++++++++---------------------
+ 1 file changed, 18 insertions(+), 21 deletions(-)
+ tests:  29|0
+total_score: 70/70
+2216b98
