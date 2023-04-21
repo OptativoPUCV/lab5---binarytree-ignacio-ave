@@ -317,3 +317,9 @@ treemap.c:89:5: error: implicit declaration of function ‘insertTreeNode’; di
 cc1: all warnings being treated as errors
 Compilation failed
 9f22cb5
+Thu Apr 20 10:40:08 PM -04 2023: 
+ treemap.c | 28 +++++++++++++++++++++++++---
+ 1 file changed, 25 insertions(+), 3 deletions(-)
+ tests:  29|0
+total_score: 70/70
+d748fb1
