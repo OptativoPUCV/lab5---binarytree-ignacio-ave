@@ -73,7 +73,7 @@ TreeMap * createTreeMap(int (*lt) (void* key1, void* key2)) {
     }
 
     // Inicializar el mapa
-    nuevotree->root = createTreeNode;
+    nuevotree->root = createTreeNode(NULL, NULL );
     nuevotree->current = nuevotree->root;
     nuevotree->lower_than = lt;
     return nuevotree;
