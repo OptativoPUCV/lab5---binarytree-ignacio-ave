@@ -55,11 +55,7 @@ TreeNode* createTreeNode(void* key, void * value) {
     return new;
 }
 
-//1.- Implemente la función createTreeMap en el archivo treemap.c. 
-// Esta función recibe la función de comparación de claves y crea un mapa 
-// (TreeMap) inicializando sus variables. 
-// El siguiente código muestra como inicializar la función de comparación. 
-// Reserve memoria, inicialice el resto de variables y retorne el mapa.
+//1.- Implemente la función createTreeMap en el archivo treemap.c. Esta función recibe la función de comparación de claves y crea un mapa  (TreeMap) inicializando sus variables. El siguiente código muestra como inicializar la función de comparación. Reserve memoria, inicialice el resto de variables y retorne el mapa.
 
 
 TreeMap * createTreeMap(int (*lt) (void* key1, void* key2)) {
@@ -232,34 +228,7 @@ Pair * upperBound(TreeMap * tree, void* key) {
     return NULL;
 }
 
-/*
-Pair * upperBound(TreeMap * tree, void * key) {
-    if (tree == NULL || tree->root == NULL) {
-        return NULL;
-    }
-    TreeNode *ub_node = NULL;
-    TreeNode *aux = tree->root;
-    while (aux != NULL) {
-        if (is_equal(tree, key, aux->pair->key)) {
-            tree->current = aux;
-            return aux->pair;
-        }
-        if (tree->lower_than(key, aux->pair->key)) {
-            if (ub_node == NULL || tree->lower_than(aux->pair->key, ub_node->pair->key)) {
-                ub_node = aux;
-        }
-        aux = aux->left;
-        } else {
-            aux = aux->right;
-        }
-    }
-    if (ub_node != NULL) {
-        tree->current = ub_node;
-        return ub_node->pair;
-    }
-    return NULL;
-}
-*/
+
 //6.- Implemente las funciones para recorrer la estructura: Pair* firstTreeMap(TreeMap* tree) retorna el primer Pair del mapa (el menor). Pair* nextTreeMap(TreeMap* tree) retornar el siguiente Pair del mapa a partir del puntero TreeNode* current. Recuerde actualizar este puntero.
 
 Pair * firstTreeMap(TreeMap * tree) {
@@ -299,26 +268,3 @@ Pair * nextTreeMap(TreeMap * tree) {
     return NULL;
 }
 
-
-/*
-Pair * nextTreeMap(TreeMap * tree) {
-    if (tree == NULL || tree->current == NULL) {
-        return NULL;
-    }
-    TreeNode *aux = tree->current;
-    if (aux->right != NULL) {
-        aux = minimum(aux->right);
-        tree->current = aux;
-        return aux->pair;
-    }
-    while (aux->parent != NULL && aux == aux->parent->right) {
-        aux = aux->parent;
-    }
-    aux = aux->parent;
-    tree->current = aux;
-    if (aux != NULL) {
-        return aux->pair;
-    }
-    return NULL;
-}
-*/
