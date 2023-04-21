@@ -323,3 +323,25 @@ Thu Apr 20 10:40:08 PM -04 2023:
  tests:  29|0
 total_score: 70/70
 d748fb1
+Thu Apr 20 10:54:07 PM -04 2023: 
+ treemap.c | 26 +++++++++++++++++---------
+ 1 file changed, 17 insertions(+), 9 deletions(-)
+In file included from test.c:4:
+treemap.c: In function ‘nextTreeMap’:
+treemap.c:255:12: error: implicit declaration of function ‘nextTreeMapAux’; did you mean ‘nextTreeMap’? [-Werror=implicit-function-declaration]
+  255 |     return nextTreeMapAux(tree);
+      |            ^~~~~~~~~~~~~~
+      |            nextTreeMap
+treemap.c:255:12: error: returning ‘int’ from a function with return type ‘Pair *’ makes pointer from integer without a cast [-Werror=int-conversion]
+  255 |     return nextTreeMapAux(tree);
+      |            ^~~~~~~~~~~~~~~~~~~~
+treemap.c: At top level:
+treemap.c:258:8: error: conflicting types for ‘nextTreeMapAux’; have ‘Pair *(TreeMap *)’
+  258 | Pair * nextTreeMapAux(TreeMap * tree) {
+      |        ^~~~~~~~~~~~~~
+treemap.c:255:12: note: previous implicit declaration of ‘nextTreeMapAux’ with type ‘int()’
+  255 |     return nextTreeMapAux(tree);
+      |            ^~~~~~~~~~~~~~
+cc1: all warnings being treated as errors
+Compilation failed
+b9cfd31
