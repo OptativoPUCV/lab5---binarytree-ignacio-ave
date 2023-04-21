@@ -305,3 +305,15 @@ test.c:(.text+0xd9a): undefined reference to `searchTreeMap'
 collect2: error: ld returned 1 exit status
 Compilation failed
 1f86a98
+Thu Apr 20 10:37:04 PM -04 2023: 
+ treemap.c | 33 +++------------------------------
+ 1 file changed, 3 insertions(+), 30 deletions(-)
+In file included from test.c:4:
+treemap.c: In function ‘insertTreeMap’:
+treemap.c:89:5: error: implicit declaration of function ‘insertTreeNode’; did you mean ‘insertTreeMap’? [-Werror=implicit-function-declaration]
+   89 |     insertTreeNode(tree, node);
+      |     ^~~~~~~~~~~~~~
+      |     insertTreeMap
+cc1: all warnings being treated as errors
+Compilation failed
+9f22cb5

@@ -75,33 +75,7 @@ TreeMap * createTreeMap(int (*lt) (void* key1, void* key2)) {
 
 // 3.- Implemente la función void insertTreeMap(TreeMap * tree, void* key, void * value). Esta función inserta un nuevo dato (key,value) en el árbol y hace que el current apunte al nuevo nodo. Para insertar un dato, primero debe realizar una búsqueda para encontrar donde debería ubicarse. Luego crear el nuevo nodo y enlazarlo. Si la clave del dato ya existe retorne sin hacer nada (recuerde que el mapa no permite claves repetidas).
 
-void insertTreeNode(TreeMap * tree, TreeNode* node) {
-    TreeNode* aux = tree->root;
-    while (aux != NULL) {
-        if (tree->lower_than(node->pair->key, aux->pair->key)) {
-            if (aux->left == NULL) {
-                aux->left = node;
-                node->parent = aux;
-                tree->current = node;
-                return;
-            }
-            aux = aux->left;
-        }
-        else if (tree->lower_than(aux->pair->key, node->pair->key)) {
-            if (aux->right == NULL) {
-                aux->right = node;
-                node->parent = aux;
-                tree->current = node;
-                return;
-            }
-            aux = aux->right;
-        }
-        else {
-            free(node);
-            return;
-        }
-    }
-}
+
 
 void insertTreeMap(TreeMap * tree, void* key, void * value) {
     if (tree == NULL) return;
@@ -168,8 +142,7 @@ void eraseTreeMap(TreeMap * tree, void* key){
 //2.- Implemente la función Pair* searchTreeMap(TreeMap* tree, void* key), la cual busca el nodo con clave igual a key y retorna el Pair asociado al nodo. Si no se encuentra la clave retorna NULL. Recuerde hacer que el current apunte al nodo encontrado.
 
 
-
-TreeNode* searchTreeNode(TreeMap * tree, void* key) {
+Pair * searchTreeMap(TreeMap * tree, void* key) {
     if (tree == NULL || tree->root == NULL ) {
         return NULL;
     }
@@ -183,7 +156,7 @@ TreeNode* searchTreeNode(TreeMap * tree, void* key) {
 
         if (is_equal(tree, aux->pair->key, key)) {
             tree->current = aux;
-            return aux;
+            return aux->pair;
         }
 
         if (tree->lower_than == NULL) {
@@ -191,6 +164,7 @@ TreeNode* searchTreeNode(TreeMap * tree, void* key) {
         }
 
         if (aux->pair->key == NULL) {
+
             return NULL;
         }
 
