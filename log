@@ -560,3 +560,9 @@ treemap.c:266:12: error: returning ‘Pair **’ from a function with incompatib
 cc1: all warnings being treated as errors
 Compilation failed
 6146953
+Thu Apr 20 11:16:13 PM -04 2023: 
+ treemap.c | 27 +++++++++++++++------------
+ 1 file changed, 15 insertions(+), 12 deletions(-)
+ tests:  29|0
+total_score: 70/70
+af86ed4
