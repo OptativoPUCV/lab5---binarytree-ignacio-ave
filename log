@@ -405,3 +405,39 @@ Thu Apr 20 10:55:04 PM -04 2023:
  tests:  29|0
 total_score: 70/70
 2216b98
+Thu Apr 20 10:55:41 PM -04 2023: 
+ treemap.c | 19 +++++++++++++++----
+ 1 file changed, 15 insertions(+), 4 deletions(-)
+In file included from test.c:4:
+treemap.c: In function ‘removeNode’:
+treemap.c:125:9: error: implicit declaration of function ‘removeNodeWithoutChildren’ [-Werror=implicit-function-declaration]
+  125 |         removeNodeWithoutChildren(tree, node);
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~
+treemap.c:127:9: error: implicit declaration of function ‘removeNodeWithOneChild’ [-Werror=implicit-function-declaration]
+  127 |         removeNodeWithOneChild(tree, node);
+      |         ^~~~~~~~~~~~~~~~~~~~~~
+treemap.c:129:9: error: implicit declaration of function ‘removeNodeWithTwoChildren’ [-Werror=implicit-function-declaration]
+  129 |         removeNodeWithTwoChildren(tree, node);
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~
+treemap.c: At top level:
+treemap.c:133:6: error: conflicting types for ‘removeNodeWithoutChildren’; have ‘void(TreeMap *, TreeNode *)’ [-Werror]
+  133 | void removeNodeWithoutChildren(TreeMap * tree, TreeNode* node) {
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~
+treemap.c:125:9: note: previous implicit declaration of ‘removeNodeWithoutChildren’ with type ‘void(TreeMap *, TreeNode *)’
+  125 |         removeNodeWithoutChildren(tree, node);
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~
+treemap.c:143:6: error: conflicting types for ‘removeNodeWithOneChild’; have ‘void(TreeMap *, TreeNode *)’ [-Werror]
+  143 | void removeNodeWithOneChild(TreeMap * tree, TreeNode* node) {
+      |      ^~~~~~~~~~~~~~~~~~~~~~
+treemap.c:127:9: note: previous implicit declaration of ‘removeNodeWithOneChild’ with type ‘void(TreeMap *, TreeNode *)’
+  127 |         removeNodeWithOneChild(tree, node);
+      |         ^~~~~~~~~~~~~~~~~~~~~~
+treemap.c:155:6: error: conflicting types for ‘removeNodeWithTwoChildren’; have ‘void(TreeMap *, TreeNode *)’ [-Werror]
+  155 | void removeNodeWithTwoChildren(TreeMap * tree, TreeNode* node) {
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~
+treemap.c:129:9: note: previous implicit declaration of ‘removeNodeWithTwoChildren’ with type ‘void(TreeMap *, TreeNode *)’
+  129 |         removeNodeWithTwoChildren(tree, node);
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~
+cc1: all warnings being treated as errors
+Compilation failed
+93101ea
