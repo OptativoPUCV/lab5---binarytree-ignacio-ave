@@ -126,3 +126,9 @@ Thu Apr 20 09:29:44 PM -04 2023:
  1 file changed, 40 insertions(+), 10 deletions(-)
  tests:  0|0
 c6d554d
+Thu Apr 20 09:50:03 PM -04 2023: 
+ treemap.c | 181 +++++++++++++++++++++++---------------------------------------
+ 1 file changed, 66 insertions(+), 115 deletions(-)
+ tests:  15|4
+total_score: 25/70
+534749e
