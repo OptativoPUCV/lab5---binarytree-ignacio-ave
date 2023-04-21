@@ -254,24 +254,3 @@ Pair * nextTreeMap(TreeMap * tree) {
     }
     return nextTreeMapAux(tree);
 }
-
-Pair * nextTreeMapAux(TreeMap * tree) {
-    if (tree->current->right != NULL) {
-        tree->current = tree->current->right;
-        while (tree->current->left != NULL) {
-            tree->current = tree->current->left;
-        }
-        return tree->current->pair;
-    } else {
-        while (tree->current->parent != NULL && tree->current->parent->right == tree->current) {
-            tree->current = tree->current->parent;
-        }
-        if (tree->current->parent == NULL) {
-            tree->current = NULL;
-            return NULL;
-        } else {
-            tree->current = tree->current->parent;
-            return tree->current->pair;
-        }
-    }
-}
