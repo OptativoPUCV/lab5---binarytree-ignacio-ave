@@ -213,19 +213,32 @@ Pair * upperBound(TreeMap * tree, void* key) {
             tree->current = aux;
             return aux->pair;
         }
-        if (tree->lower_than(key, aux->pair->key)) {
-            ub_node = aux;
-            aux = aux->left;
-        }
-        else {
-            aux = aux->right;
-        }
+        ub_node = update_ub_node(tree, key, aux, ub_node);
+        aux = move_to_next_node(tree, key, aux);
     }
     if (ub_node != NULL) {
         tree->current = ub_node;
         return ub_node->pair;
     }
     return NULL;
+}
+
+TreeNode * update_ub_node(TreeMap * tree, void* key, TreeNode *aux,
+                          TreeNode *ub_node) {
+    if (tree->lower_than(key, aux->pair->key)) {
+        ub_node = aux;
+    }
+    return ub_node;
+}
+
+TreeNode * move_to_next_node(TreeMap * tree, void* key, TreeNode *aux) {
+    if (tree->lower_than(key, aux->pair->key)) {
+        aux = aux->left;
+    }
+    else {
+        aux = aux->right;
+    }
+    return aux;
 }
 
 

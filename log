@@ -366,3 +366,36 @@ Thu Apr 20 10:54:21 PM -04 2023:
  tests:  29|0
 total_score: 70/70
 5ed8de4
+Thu Apr 20 10:54:41 PM -04 2023: 
+ treemap.c | 25 +++++++++++++++++++------
+ 1 file changed, 19 insertions(+), 6 deletions(-)
+In file included from test.c:4:
+treemap.c: In function ‘upperBound’:
+treemap.c:216:19: error: implicit declaration of function ‘update_ub_node’ [-Werror=implicit-function-declaration]
+  216 |         ub_node = update_ub_node(tree, key, aux, ub_node);
+      |                   ^~~~~~~~~~~~~~
+treemap.c:216:17: error: assignment to ‘TreeNode *’ from ‘int’ makes pointer from integer without a cast [-Werror=int-conversion]
+  216 |         ub_node = update_ub_node(tree, key, aux, ub_node);
+      |                 ^
+treemap.c:217:15: error: implicit declaration of function ‘move_to_next_node’ [-Werror=implicit-function-declaration]
+  217 |         aux = move_to_next_node(tree, key, aux);
+      |               ^~~~~~~~~~~~~~~~~
+treemap.c:217:13: error: assignment to ‘TreeNode *’ from ‘int’ makes pointer from integer without a cast [-Werror=int-conversion]
+  217 |         aux = move_to_next_node(tree, key, aux);
+      |             ^
+treemap.c: At top level:
+treemap.c:226:12: error: conflicting types for ‘update_ub_node’; have ‘TreeNode *(TreeMap *, void *, TreeNode *, TreeNode *)’
+  226 | TreeNode * update_ub_node(TreeMap * tree, void* key, TreeNode *aux,
+      |            ^~~~~~~~~~~~~~
+treemap.c:216:19: note: previous implicit declaration of ‘update_ub_node’ with type ‘int()’
+  216 |         ub_node = update_ub_node(tree, key, aux, ub_node);
+      |                   ^~~~~~~~~~~~~~
+treemap.c:234:12: error: conflicting types for ‘move_to_next_node’; have ‘TreeNode *(TreeMap *, void *, TreeNode *)’
+  234 | TreeNode * move_to_next_node(TreeMap * tree, void* key, TreeNode *aux) {
+      |            ^~~~~~~~~~~~~~~~~
+treemap.c:217:15: note: previous implicit declaration of ‘move_to_next_node’ with type ‘int()’
+  217 |         aux = move_to_next_node(tree, key, aux);
+      |               ^~~~~~~~~~~~~~~~~
+cc1: all warnings being treated as errors
+Compilation failed
+34cc622
