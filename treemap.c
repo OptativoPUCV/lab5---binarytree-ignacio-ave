@@ -82,23 +82,39 @@ TreeMap * createTreeMap(int (*lt) (void* key1, void* key2)) {
 
 
 Pair * searchTreeMap(TreeMap * tree, void* key) {
-    if (tree == NULL || tree->root == NULL) return NULL;
+    if (tree == NULL) {
+        fprintf(stderr, "Error: tree is NULL.\n");
+        return NULL;
+    }
+
+    if (tree->root == NULL) {
+        fprintf(stderr, "Error: tree->root is NULL.\n");
+        return NULL;
+    }
 
     TreeNode * aux = tree->root;
 
     while (aux != NULL) {
-        if (aux->pair != NULL) {
-            if (is_equal(tree, aux->pair->key, key)) {
-                tree->current = aux;
-                return aux->pair;
-            }
+        if (aux->pair == NULL) {
+            fprintf(stderr, "Error: aux->pair is NULL.\n");
+            return NULL;
         }
 
-        if (tree->lower_than == NULL || aux->pair == NULL || aux->pair->key == NULL) {
-            // Imprime un mensaje de error si alguno de los elementos es NULL
-            fprintf(stderr, "Error: Uno de los elementos es NULL.\n");
-            exit(EXIT_FAILURE);
+        if (is_equal(tree, aux->pair->key, key)) {
+            tree->current = aux;
+            return aux->pair;
         }
+
+        if (tree->lower_than == NULL) {
+            fprintf(stderr, "Error: tree->lower_than function is NULL.\n");
+            return NULL;
+        }
+
+        if (aux->pair->key == NULL) {
+            fprintf(stderr, "Error: aux->pair->key is NULL.\n");
+            return NULL;
+        }
+
         if (tree->lower_than(key, aux->pair->key)) {
             aux = aux->left;
         } else {

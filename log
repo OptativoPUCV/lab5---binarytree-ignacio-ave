@@ -115,3 +115,9 @@ Thu Apr 20 09:22:15 PM -04 2023:
  tests:  3|0
    [ INFO ] inicializando el arbol...
 246af72
+Thu Apr 20 09:27:15 PM -04 2023: 
+ treemap.c | 28 ++++++++++++++++++++++------
+ 1 file changed, 22 insertions(+), 6 deletions(-)
+ tests:  3|1
+   [ INFO ] inicializando el arbol...
+82faaf2
