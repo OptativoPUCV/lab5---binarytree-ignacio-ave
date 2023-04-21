@@ -97,3 +97,9 @@ Thu Apr 20 09:03:00 PM -04 2023:
  1 file changed, 28 insertions(+), 30 deletions(-)
  tests:  0|0
 fbb7a06
+Thu Apr 20 09:04:41 PM -04 2023: 
+ treemap.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
+ tests:  3|0
+   [ INFO ] inicializando el arbol...
+5e71e60
