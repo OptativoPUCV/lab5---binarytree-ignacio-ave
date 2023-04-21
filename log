@@ -69,3 +69,14 @@ Thu Apr 20 06:13:11 PM -04 2023:
  1 file changed, 3 insertions(+), 1 deletion(-)
  tests:  0|0
 043f59d
+Thu Apr 20 08:48:14 PM -04 2023: 
+ treemap.c | 95 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++--
+ 1 file changed, 92 insertions(+), 3 deletions(-)
+In file included from test.c:4:
+treemap.c: In function ‘createTreeMap’:
+treemap.c:76:21: error: assignment to ‘TreeNode *’ from incompatible pointer type ‘TreeNode * (*)(void *, void *)’ [-Werror=incompatible-pointer-types]
+   76 |     nuevotree->root = createTreeNode;
+      |                     ^
+cc1: all warnings being treated as errors
+Compilation failed
+bfc0dec

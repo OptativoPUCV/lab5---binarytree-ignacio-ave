@@ -4,6 +4,10 @@
 #include "treemap.h"
 
 typedef struct TreeNode TreeNode;
+typedef struct Pair Pair;
+
+
+
 
 
 struct TreeNode {
@@ -26,8 +30,6 @@ int is_equal(TreeMap* tree, void* key1, void* key2){
 }
 
 Pair createPair (Pair *pair ,void* key, void* value){
-
-
     // Asignar valores
     pair->key = key;
     pair->value = value;
@@ -50,6 +52,7 @@ TreeNode* createTreeNode(void* key, void * value) {
     createPair(pair ,key, value);
     new->parent = new->left = new->right = NULL;
     
+    // Retornar el nodo
     return new;
 }
 
@@ -68,9 +71,10 @@ TreeMap * createTreeMap(int (*lt) (void* key1, void* key2)) {
     if (nuevotree == NULL) {
         return NULL;
     }
+
     // Inicializar el mapa
-    nuevotree->root = NULL;
-    nuevotree->current = NULL;
+    nuevotree->root = createTreeNode;
+    nuevotree->current = nuevotree->root;
     nuevotree->lower_than = lt;
     return nuevotree;
 }
@@ -85,6 +89,7 @@ Pair * searchTreeMap(TreeMap * tree, void* key){
     // Inicializar el nodo actual
     TreeNode * aux = tree->root;
     
+    // Mientras no se llegue al final del árbol
     while (aux != NULL) {
         if(aux->pair == NULL) {
             return NULL;
@@ -112,9 +117,91 @@ Pair * searchTreeMap(TreeMap * tree, void* key){
 
 }
 
+/*
+char * _strdup(const char * str) {
+    char * aux = (char *)malloc(strlen(str) + 1);
+    strcpy(aux, str);
+    return aux;
+}
 
+int lower_than_string(void* key1, void* key2){
+    char* k1=(char*) key1;
+    char* k2=(char*) key2;
+    if(strcmp(k1,k2)<0) return 1;
+    return 0;
+}
+
+
+int main(){
+    TreeMap* map = createTreeMap(lower_than_string);
+
+    char words[9][5] = {"saco","cese","case","cosa","casa","cesa",
+    "cose","seco","saca"};
+
+    int i=0;
+    for(;i<9; i++){
+        insertTreeMap(map,_strdup(words[i]),_strdup(words[i]));
+    }
+
+    Pair* aux= firstTreeMap(map);
+    while(aux!=NULL){
+        printf("%s\n", aux->value);
+        aux=nextTreeMap(map);
+    }
+
+    return 0;
+
+}*/
 
 // 3.- Implemente la función void insertTreeMap(TreeMap * tree, void* key, void * value). Esta función inserta un nuevo dato (key,value) en el árbol y hace que el current apunte al nuevo nodo. Para insertar un dato, primero debe realizar una búsqueda para encontrar donde debería ubicarse. Luego crear el nuevo nodo y enlazarlo. Si la clave del dato ya existe retorne sin hacer nada (recuerde que el mapa no permite claves repetidas).
+
+void insertTreeMap(TreeMap * tree, void *key, void *value) {
+    // Si el árbol está vacío
+    if (tree->root == NULL) {
+        tree->root = createTreeNode(key, value);
+        tree->current = tree->root;
+        return;
+    }
+    // Si la clave ya existe
+    if (searchTreeMap(tree, key) != NULL) return;
+
+    // Si la clave no existe
+    while (tree->current != NULL) {
+        // Si la clave es menor que la del nodo actual
+        if (tree->lower_than(key, tree->current->pair->key)) {
+            // Si el nodo actual no tiene hijo izquierdo
+            if (tree->current->left == NULL) {
+                // Crear el nuevo nodo
+                TreeNode * new = createTreeNode(key, value);
+                // Enlazar el nuevo nodo
+                tree->current->left = new;
+                new->parent = tree->current;
+                // Current apunte al nuevo nodo
+                tree->current = new;
+                return;
+            }
+            // Si el nodo actual tiene hijo izquierdo
+            tree->current = tree->current->left;
+        // Si la clave es mayor que la del nodo actual
+        } else {
+            // Si el nodo actual no tiene hijo derecho
+            if (tree->current->right == NULL) {
+                // Crear el nuevo nodo
+                TreeNode * new = createTreeNode(key, value);
+                // Enlazar el nuevo nodo
+                tree->current->right = new;
+                new->parent = tree->current;
+                // Current apunte al nuevo nodo
+                tree->current = new;
+                return;
+            }
+            // Si el nodo actual tiene hijo derecho
+            tree->current = tree->current->right;
+        }
+    }
+}
+
+/* 
 void insertTreeMap(TreeMap * tree, void* key, void * value) {
     
     tree->current = tree->root; 
@@ -152,7 +239,7 @@ void insertTreeMap(TreeMap * tree, void* key, void * value) {
         tree->current = aux->right;
     }
 }
-
+*/
 /*
 
 */
