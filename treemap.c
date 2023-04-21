@@ -168,40 +168,14 @@ void eraseTreeMap(TreeMap * tree, void* key){
 //2.- Implemente la función Pair* searchTreeMap(TreeMap* tree, void* key), la cual busca el nodo con clave igual a key y retorna el Pair asociado al nodo. Si no se encuentra la clave retorna NULL. Recuerde hacer que el current apunte al nodo encontrado.
 
 
-Pair * searchTreeMap(TreeMap * tree, void* key) {
-    if (tree == NULL || tree->root == NULL ) {
+
+Pair* searchTreeMap(TreeMap * tree, void* key) {
+    TreeNode* node = searchTreeNode(tree, key);
+    if (node == NULL) {
         return NULL;
     }
 
-    TreeNode * aux = tree->root;
-
-    while (aux != NULL) {
-        if (aux->pair == NULL) {
-            return NULL;
-        }
-
-        if (is_equal(tree, aux->pair->key, key)) {
-            tree->current = aux;
-            return aux->pair;
-        }
-
-        if (tree->lower_than == NULL) {
-            return NULL;
-        }
-
-        if (aux->pair->key == NULL) {
-
-            return NULL;
-        }
-
-        if (tree->lower_than(key, aux->pair->key)) {
-            aux = aux->left;
-        } else {
-            aux = aux->right;
-        }
-    }
-
-    return NULL;
+    return node->pair;
 }
 
 

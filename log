@@ -204,3 +204,16 @@ Thu Apr 20 10:34:56 PM -04 2023:
  tests:  29|0
 total_score: 70/70
 6291462
+Thu Apr 20 10:35:02 PM -04 2023: 
+ treemap.c | 34 ++++------------------------------
+ 1 file changed, 4 insertions(+), 30 deletions(-)
+In file included from test.c:4:
+treemap.c: In function ‘searchTreeMap’:
+treemap.c:173:22: error: implicit declaration of function ‘searchTreeNode’; did you mean ‘searchTreeMap’? [-Werror=implicit-function-declaration]
+  173 |     TreeNode* node = searchTreeNode(tree, key);
+      |                      ^~~~~~~~~~~~~~
+      |                      searchTreeMap
+treemap.c:173:22: error: initialization of ‘TreeNode *’ from ‘int’ makes pointer from integer without a cast [-Werror=int-conversion]
+cc1: all warnings being treated as errors
+Compilation failed
+5d72c8b
