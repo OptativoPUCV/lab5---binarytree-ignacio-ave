@@ -26,28 +26,24 @@ int is_equal(TreeMap* tree, void* key1, void* key2){
 }
 
 
-Pair createPair (Pair *pair ,void* key, void* value){
-    // Asignar los valores
+void createPair (Pair *pair ,void* key, void* value){
     pair->key = key;
     pair->value = value;
-    // Retornar el par
-    return *pair;
+    return ;
 }
 
 
 
 TreeNode* createTreeNode(void* key, void * value) {
-    // Reservar memoria para el nuevo nodo
     TreeNode * new = (TreeNode *)malloc(sizeof(TreeNode));
     Pair * pair = (Pair*) malloc (sizeof(Pair));
     
-    // Si no se pudo reservar memoria, retornar NULL
     if (new == NULL || pair == NULL) {
         free(new);
         free(pair);
         return NULL;
     }
-    // Inicializar el nodo
+    
     createPair(pair ,key, value);
     new->pair = pair;
     new->parent = new->left = new->right = NULL;
