@@ -217,3 +217,19 @@ treemap.c:173:22: error: initialization of ‘TreeNode *’ from ‘int’ makes
 cc1: all warnings being treated as errors
 Compilation failed
 5d72c8b
+Thu Apr 20 10:36:30 PM -04 2023: 
+ treemap.c | 21 ++++++++++++++++-----
+ 1 file changed, 16 insertions(+), 5 deletions(-)
+/usr/bin/ld: /tmp/cc96wheD.o: in function `eraseTreeMap':
+test.c:(.text+0x4f1): undefined reference to `searchTreeMap'
+/usr/bin/ld: /tmp/cc96wheD.o: in function `search_test1':
+test.c:(.text+0xb52): undefined reference to `searchTreeMap'
+/usr/bin/ld: /tmp/cc96wheD.o: in function `search_test2':
+test.c:(.text+0xbe7): undefined reference to `searchTreeMap'
+/usr/bin/ld: /tmp/cc96wheD.o: in function `search_test3':
+test.c:(.text+0xc80): undefined reference to `searchTreeMap'
+/usr/bin/ld: /tmp/cc96wheD.o: in function `search_test4':
+test.c:(.text+0xd36): undefined reference to `searchTreeMap'
+collect2: error: ld returned 1 exit status
+Compilation failed
+3454e7e
