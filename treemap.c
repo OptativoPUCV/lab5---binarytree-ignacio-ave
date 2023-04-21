@@ -114,6 +114,49 @@ Pair * searchTreeMap(TreeMap * tree, void* key) {
 
 // 3.- Implemente la función void insertTreeMap(TreeMap * tree, void* key, void * value). Esta función inserta un nuevo dato (key,value) en el árbol y hace que el current apunte al nuevo nodo. Para insertar un dato, primero debe realizar una búsqueda para encontrar donde debería ubicarse. Luego crear el nuevo nodo y enlazarlo. Si la clave del dato ya existe retorne sin hacer nada (recuerde que el mapa no permite claves repetidas).
 void insertTreeMap(TreeMap * tree, void* key, void * value) {
+    if (tree == NULL) return;
+    
+    if (searchTreeMap(tree, key) != NULL) return;
+
+    if(tree->root == NULL){
+        tree->root = createTreeNode(key, value);
+        tree->current = tree->root;
+        return;
+    }
+
+    TreeNode * aux = tree->root;
+    TreeNode * parent = NULL;
+
+    while (aux != NULL) {
+        parent = aux;
+
+        if (tree->lower_than == NULL || aux->pair == NULL || aux->pair->key == NULL) {
+            // Imprime un mensaje de error si alguno de los elementos es NULL
+            fprintf(stderr, "Error: Uno de los elementos es NULL.\n");
+            exit(EXIT_FAILURE);
+        }
+        if (tree->lower_than(key, aux->pair->key)) {
+            aux = aux->left;
+        } else if (aux->pair->key == key) {
+            return; 
+        } else {
+            aux = aux->right;
+        }
+    }
+
+    TreeNode * new = createTreeNode(key, value);
+    new->parent = parent;
+
+    if (parent == NULL) {
+
+        tree->root = new;
+    } else if (tree->lower_than(key, parent->pair->key)) {
+        parent->left = new;
+    } else {
+        parent->right = new;
+    }
+
+    tree->current = new;
 
 }
 //4.- Implemente la función TreeNode * minimum(TreeNode * x). Esta función retorna el nodo con la mínima clave ubicado en el subárbol con raiz x. Para obtener el nodo tiene que, a partir del nodo x, irse por la rama izquierda hasta llegar al final del subárbol. Si x no tiene hijo izquierdo se retorna el mismo nodo.
