@@ -453,3 +453,9 @@ Thu Apr 20 10:56:34 PM -04 2023:
  tests:  29|0
 total_score: 70/70
 85035ef
+Thu Apr 20 10:57:07 PM -04 2023: 
+ treemap.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
+ tests:  26|1
+total_score: 65/70
+76a1c8a

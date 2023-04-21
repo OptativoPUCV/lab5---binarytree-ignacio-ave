@@ -63,12 +63,19 @@ TreeMap * createTreeMap(int (*lt) (void* key1, void* key2)) {
     TreeMap * nuevo = (TreeMap *)malloc(sizeof(TreeMap));
     // Si no se pudo reservar memoria, retornar NULL
     if (nuevo == NULL) {
+        // No se pudo reservar memoria
         return NULL;
     }
     // Inicializar el mapa
     nuevo->root = NULL;
     nuevo->current = NULL;
     nuevo->lower_than = lt;
+    // Si no se pudo reservar memoria para el root, retornar NULL
+    if (nuevo->root == NULL) {
+        // No se pudo reservar memoria
+        free(nuevo);
+        return NULL;
+    }
     return nuevo;
 }
 
