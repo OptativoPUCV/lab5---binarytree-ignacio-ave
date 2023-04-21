@@ -95,7 +95,7 @@ Pair * searchTreeMap(TreeMap * tree, void* key) {
         }
 
         if (tree->lower_than == NULL || aux->pair == NULL || aux->pair->key == NULL) {
-            // Imprime un mensaje de error o lanza una excepción si alguno de los elementos es NULL
+            // Imprime un mensaje de error si alguno de los elementos es NULL
             fprintf(stderr, "Error: Uno de los elementos es NULL.\n");
             exit(EXIT_FAILURE);
         }
