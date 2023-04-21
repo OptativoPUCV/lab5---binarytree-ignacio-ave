@@ -291,3 +291,17 @@ test.c:(.text+0xd9a): undefined reference to `searchTreeMap'
 collect2: error: ld returned 1 exit status
 Compilation failed
 42b1bbd
+Thu Apr 20 10:37:01 PM -04 2023: 
+/usr/bin/ld: /tmp/ccFLc234.o: in function `eraseTreeMap':
+test.c:(.text+0x4f1): undefined reference to `searchTreeMap'
+/usr/bin/ld: /tmp/ccFLc234.o: in function `search_test1':
+test.c:(.text+0xbb6): undefined reference to `searchTreeMap'
+/usr/bin/ld: /tmp/ccFLc234.o: in function `search_test2':
+test.c:(.text+0xc4b): undefined reference to `searchTreeMap'
+/usr/bin/ld: /tmp/ccFLc234.o: in function `search_test3':
+test.c:(.text+0xce4): undefined reference to `searchTreeMap'
+/usr/bin/ld: /tmp/ccFLc234.o: in function `search_test4':
+test.c:(.text+0xd9a): undefined reference to `searchTreeMap'
+collect2: error: ld returned 1 exit status
+Compilation failed
+1f86a98
