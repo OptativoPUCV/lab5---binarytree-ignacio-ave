@@ -518,3 +518,25 @@ treemap.c:207:8: note: previous definition of ‘upperBound’ with type ‘Pair
 cc1: all warnings being treated as errors
 Compilation failed
 7d9092a
+Thu Apr 20 11:07:38 PM -04 2023: 
+ treemap.c | 53 ++++++++++-------------------------------------------
+ 1 file changed, 10 insertions(+), 43 deletions(-)
+In file included from test.c:4:
+treemap.c: In function ‘nextTreeMap’:
+treemap.c:260:12: error: implicit declaration of function ‘findNext’; did you mean ‘rindex’? [-Werror=implicit-function-declaration]
+  260 |     return findNext(tree->current);
+      |            ^~~~~~~~
+      |            rindex
+treemap.c:260:12: error: returning ‘int’ from a function with return type ‘Pair *’ makes pointer from integer without a cast [-Werror=int-conversion]
+  260 |     return findNext(tree->current);
+      |            ^~~~~~~~~~~~~~~~~~~~~~~
+treemap.c: At top level:
+treemap.c:265:12: error: conflicting types for ‘findNext’; have ‘TreeNode *(TreeNode *)’
+  265 | TreeNode * findNext(TreeNode * node) {
+      |            ^~~~~~~~
+treemap.c:260:12: note: previous implicit declaration of ‘findNext’ with type ‘int()’
+  260 |     return findNext(tree->current);
+      |            ^~~~~~~~
+cc1: all warnings being treated as errors
+Compilation failed
+8d86c80
