@@ -500,3 +500,21 @@ treemap.c:214:15: error: variable ‘ub_node’ set but not used [-Werror=unused
 cc1: all warnings being treated as errors
 Compilation failed
 b5cda31
+Thu Apr 20 11:05:45 PM -04 2023: 
+ treemap.c | 26 +++++++++++++++++++++++++-
+ 1 file changed, 25 insertions(+), 1 deletion(-)
+In file included from test.c:4:
+treemap.c: In function ‘findInTree’:
+treemap.c:238:15: error: variable ‘ub_node’ set but not used [-Werror=unused-but-set-variable]
+  238 |     TreeNode *ub_node = NULL;
+      |               ^~~~~~~
+treemap.c: At top level:
+treemap.c:255:8: error: redefinition of ‘upperBound’
+  255 | Pair * upperBound(TreeMap * tree, void* key) {
+      |        ^~~~~~~~~~
+treemap.c:207:8: note: previous definition of ‘upperBound’ with type ‘Pair *(TreeMap *, void *)’
+  207 | Pair * upperBound(TreeMap * tree, void* key) {
+      |        ^~~~~~~~~~
+cc1: all warnings being treated as errors
+Compilation failed
+7d9092a
